@@ -12,8 +12,11 @@ public class CarsRepository
 
   internal Car GetCarById(int carId)
   {
+    // NOTE dapper will look through the object passed to it for a key of id and inject the value into our sql statement
     string sql = "SELECT * FROM cars WHERE id = @id;";
-    // NOTE                           {id: 4}
+
+    // NOTE second argument passed to dapper is an anonymous object, with our int id stored inside.
+    //                                   {id: 4}
     Car car = _db.Query<Car>(sql, new { id = carId }).FirstOrDefault();
     return car;
   }
