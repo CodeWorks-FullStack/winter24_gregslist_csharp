@@ -15,6 +15,21 @@ public class CarsService
     return car;
   }
 
+  internal string DestroyCar(int carId, string userId)
+  {
+    Car carToDestroy = GetCarById(carId);
+
+    if (carToDestroy.CreatorId != userId)
+    {
+      throw new Exception("NOT YOUR CAR");
+    }
+
+    _repository.DestroyCar(carId);
+
+
+    return $"{carToDestroy.Make} {carToDestroy.Model} has been destroyed.";
+  }
+
   internal Car GetCarById(int carId)
   {
     Car car = _repository.GetCarById(carId);

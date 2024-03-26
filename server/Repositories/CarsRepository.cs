@@ -1,6 +1,7 @@
 
 
 
+
 namespace gregslist_csharp.Repositories;
 public class CarsRepository
 {
@@ -22,6 +23,13 @@ public class CarsRepository
 
     Car car = _db.Query<Car>(sql, carData).FirstOrDefault();
     return car;
+  }
+
+  internal void DestroyCar(int carId)
+  {
+    string sql = "DELETE FROM cars WHERE id = @carId LIMIT 1;";
+
+    _db.Execute(sql, new { carId });
   }
 
   internal Car GetCarById(int carId)
