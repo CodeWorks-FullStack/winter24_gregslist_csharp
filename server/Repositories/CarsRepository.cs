@@ -1,5 +1,6 @@
 
 
+
 namespace gregslist_csharp.Repositories;
 public class CarsRepository
 {
@@ -8,6 +9,19 @@ public class CarsRepository
   public CarsRepository(IDbConnection db)
   {
     _db = db;
+  }
+
+  internal Car CreateCar(Car carData)
+  {
+    string sql = @"
+    INSERT INTO
+    cars(make, model, year, price, imgUrl, hasSalvagedTitle, engineType, color, creatorId)
+    VALUES(@Make, @Model, @Year, @Price, @ImgUrl, @HasSalvagedTitle, @EngineType, @Color, @CreatorId);
+    
+    SELECT * FROM cars WHERE id = LAST_INSERT_ID();";
+
+    Car car = _db.Query<Car>(sql, carData).FirstOrDefault();
+    return car;
   }
 
   internal Car GetCarById(int carId)
