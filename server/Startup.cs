@@ -1,3 +1,4 @@
+using gregslist_csharp.Controllers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using MySqlConnector;
 
 namespace gregslist_csharp;
+
 
 public class Startup
 {
@@ -33,6 +35,9 @@ public class Startup
 
     services.AddScoped<AccountsRepository>();
     services.AddScoped<AccountService>();
+
+    services.AddScoped<CarsService>();
+    services.AddScoped<CarsRepository>();
   }
 
   private void ConfigureCors(IServiceCollection services)
@@ -101,5 +106,6 @@ public class Startup
       endpoints.MapControllers();
     });
   }
+
 }
 
