@@ -1,4 +1,3 @@
-
 namespace gregslist_csharp.Services;
 
 public class CarsService
@@ -8,6 +7,18 @@ public class CarsService
   public CarsService(CarsRepository repository)
   {
     _repository = repository;
+  }
+
+  internal Car GetCarById(int carId)
+  {
+    Car car = _repository.GetCarById(carId);
+
+    if (car == null)
+    {
+      throw new Exception($"Invalid id: {carId}");
+    }
+
+    return car;
   }
 
   internal List<Car> GetCars()
