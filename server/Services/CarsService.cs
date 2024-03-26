@@ -47,4 +47,23 @@ public class CarsService
     List<Car> cars = _repository.GetCars();
     return cars;
   }
+
+  internal Car UpdateCar(int carId, string userId, Car carData)
+  {
+    Car carToUpdate = GetCarById(carId);
+
+    if (carToUpdate.CreatorId != userId)
+    {
+      throw new Exception("NOT YOUR CAR");
+    }
+
+    carToUpdate.Make = carData.Make ?? carToUpdate.Make;
+    carToUpdate.Model = carData.Model ?? carToUpdate.Model;
+    carToUpdate.Price = carData.Price ?? carToUpdate.Price;
+    carToUpdate.HasSalvagedTitle = carData.HasSalvagedTitle ?? carToUpdate.HasSalvagedTitle;
+
+    Car updatedCar = _repository.UpdateCar(carToUpdate);
+
+    return updatedCar;
+  }
 }

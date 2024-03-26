@@ -28,11 +28,12 @@ CREATE TABLE cars(
 
 DROP TABLE cars;
 
+SELECT * FROM cars;
 
 SELECT id, name FROM accounts;
 
 INSERT INTO 
 cars
-(make, model, year, price, imgUrl, description, engineType, color, creatorId, hasSalvagedTitle)
+(make, model, year, price, imgUrl, description, engineType, color, creatorId, `hasSalvagedTitle`)
 VALUES
-("Mazda", "Miata", 1997, 4000, "https://images.unsplash.com/photo-1610884447640-42b8ec61a933?q=80&w=2226&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "Broken car", "4 stroke", "red", "6602f6b35524751e79041b7e", true);
+("Mazda", "Miata", 1997, 4000, "https://images.unsplash.com/photo-1610884447640-42b8ec61a933?q=80&w=2226&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "Broken car", "4 stroke", "red", "6602f6b35524751e79041b7e", null);

@@ -2,6 +2,7 @@
 
 
 
+
 namespace gregslist_csharp.Repositories;
 public class CarsRepository
 {
@@ -49,5 +50,23 @@ public class CarsRepository
 
     List<Car> cars = _db.Query<Car>(sql).ToList();
     return cars;
+  }
+
+  internal Car UpdateCar(Car carToUpdate)
+  {
+    string sql = @"
+      UPDATE cars
+      SET
+      make = @Make,
+      model = @Model,
+      price = @Price,
+      hasSalvagedTitle = @HasSalvagedTitle
+      WHERE id = @Id
+      LIMIT 1;
+      
+      SELECT * FROM cars WHERE id = @Id;";
+
+    Car car = _db.Query<Car>(sql, carToUpdate).FirstOrDefault();
+    return car;
   }
 }
